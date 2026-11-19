@@ -1,0 +1,15 @@
+mapping:
+  object_type: [object_type, objecttype]
+  region: [region, city]
+  building_type: [building_type, material, wall_material]
+  rooms: [rooms, kolvo_komnat]
+  area: [area, total_area]
+  price: [price, cost]
+  latitude: [latitude, lat]
+  longitude: [longitude, lon]
+  district: [district, rayon]
+
+required:
+  - price
+  - area
+  - rooms

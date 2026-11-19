@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: "ВПИШИТЕ_ПОЛЬЗОВАТЕЛЬ"
+      POSTGRES_PASSWORD: "ВПИШИТЕ_ПАРОЛЬ"
+      POSTGRES_DB: "ВПИШИТЕ_БАЗА"
+    ports:
+      - "ВПИШИТЕ_ПОРТ_POSTGRES:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  metabase:
+    image: metabase/metabase:latest
+    depends_on:
+      - postgres
+    ports:
+      - "ВПИШИТЕ_ПОРТ_METABASE:3000"
+    environment:
+      MB_DB_TYPE: h2
+
+volumes:
+  postgres_data:
